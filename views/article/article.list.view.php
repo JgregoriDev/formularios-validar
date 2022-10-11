@@ -5,6 +5,12 @@ use App\Registry; ?>
 <div class="container-fluid">
   <div class="row">
     <div class="col-10">
+      <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="<?= Registry::get(\App\Registry::ROUTER)->generate("inicio", []) ?>">Inicio</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Artículo</li>
+        </ol>
+      </nav>
       <div class="d-flex justify-content-end align-content-center mb-2">
         <a href="
         <?= Registry::get(\App\Registry::ROUTER)->generate(
@@ -49,13 +55,13 @@ use App\Registry; ?>
                   <span class="d-none">Editar</span>
                 </a>
                 <a title="Observar" class="btn btn-secondary text-white" href="<?= Registry::get(\App\Registry::ROUTER)->generate(
-                                                                                "conseguir_article",
-                                                                                ["id" =>  $value['CODARTICULO']]
-                                                                              ) ?>">
-                <i class="bi bi-eye"></i>
+                                                                                  "conseguir_article",
+                                                                                  ["id" =>  $value['CODARTICULO']]
+                                                                                ) ?>">
+                  <i class="bi bi-eye"></i>
                   <span class="d-none">Observar</span>
                 </a>
-            
+
               </td>
 
             <?php endforeach; ?>

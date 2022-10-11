@@ -68,7 +68,7 @@
     </div>
     <div class="row bg-principal h-100">
       <!-- Aside start -->
-      <aside class="bg-white d-flex justify-content-center justify-content-md-start col col-lg-2">
+      <aside class="bg-white d-flex justify-content-center justify-content-lg-start col col-lg-2">
         <nav>
           <ul class="sidebar-nav list-unstyled" id="sidebar-nav">
 

@@ -9,6 +9,13 @@ $article = $data['article'];
   <div class="row">
     <div class="col-2"></div>
     <div class="col-8">
+      <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="<?= Registry::get(\App\Registry::ROUTER)->generate("inicio", []) ?>">Inicio</a></li>
+          <li class="breadcrumb-item"><a href="<?= Registry::get(\App\Registry::ROUTER)->generate("conseguir_articles", []) ?>">Artículo</a></li>
+          <li class="breadcrumb-item active" aria-current="page"><?= $data["titulo"] ?></li>
+        </ol>
+      </nav>
       <?php
       $families = $data['families'];
       $subfamilies = $data['subfamilies'];
@@ -26,9 +33,8 @@ $article = $data['article'];
           <select required name="codFamilia" id="codFamilia" class="form-select  <?php count($families) === 0 ? 'border-danger' : '' ?>">
             <option value="" <?= $article->getCodFamilia() === 0 ? 'selected disabled' : '' ?> id="">Selecciona una opción</option>
             <?php if (count($families)  > 0) : ?>
-
               <?php foreach ($families as $familia) : ?>
-                <option value="<?= $familia->getCodFamilia() ?>"  id=""><?= $familia->getNombreFamilia() ?></option>
+                <option value="<?= $familia->getCodFamilia() ?>" id=""><?= $familia->getCodFamilia() . " - " . $familia->getNombreFamilia() ?></option>
               <?php endforeach; ?>
             <?php else : ?>
             <?php endif; ?>
@@ -39,9 +45,8 @@ $article = $data['article'];
           <select name="codSubfamilia" id="codSubfamilia" class="form-select <?php count($subfamilies) === 0 ? 'border-danger' : '' ?>">
             <option value="" <?= !isset($article) ? 'selected disabled' : '' ?> id="">Selecciona una opción</option>
             <?php if (count($subfamilies) > 0) : ?>
-
               <?php foreach ($subfamilies as $subfamilia) : ?>
-                <option value="<?= $subfamilia->getCodSubfamilia() ?>" id=""><?= $subfamilia->getNombre() ?></option>
+                <option value="<?= $subfamilia->getCodSubfamilia() ?>" id=""><?= $subfamilia->getCodSubfamilia() . " - " . $subfamilia->getNombre() ?></option>
               <?php endforeach; ?>
             <?php else : ?>
             <?php endif; ?>
@@ -54,13 +59,13 @@ $article = $data['article'];
             <?php if (count($marques) > 0) : ?>
 
               <?php foreach ($marques as $marca) : ?>
-                <option value="<?= $marca->getCodMarca() ?>" id=""><?= $marca->getNombreMarca() ?></option>
+                <option value="<?= $marca->getCodMarca() ?>" id=""><?= $marca->getCodMarca() . " - " . $marca->getNombreMarca() ?></option>
               <?php endforeach; ?>
             <?php else : ?>
             <?php endif; ?>
           </select>
         </div>
-        
+
         <div class="mb-3">
           <label for="codProveedors" class="form-label <?php count($proveedors) === 0 ? 'border-danger' : '' ?>">Código proveedor:</label>
           <select name="codProveedors" id="codProveedors" class="form-select">
@@ -68,7 +73,7 @@ $article = $data['article'];
             <?php if (count($proveedors) > 0) : ?>
 
               <?php foreach ($proveedors as $proveedor) : ?>
-                <option value="<?= $proveedor->getCodProveedor() ?>" id=""><?= $proveedor->getRazonSocial() ?></option>
+                <option value="<?= $proveedor->getCodProveedor() ?>" id=""><?= $proveedor->getCodProveedor() . " - " . $proveedor->getRazonSocial() ?></option>
               <?php endforeach; ?>
             <?php else : ?>
             <?php endif; ?>
