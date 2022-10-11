@@ -127,14 +127,14 @@ $article = $data['article'];
         </div> -->
         <div class="mb-3">
           <label for="auxMarca" class="form-label">Aux margen</label>
-          <input type="text" name="auxMarca" id="auxMarca" value="" class="form-control">
+          <input type="number" name="auxMarca" id="auxMarca" value="" class="form-control">
           <?php if (FlashMessage::isNotNull("errorsCodEmpresa")) : ?>
             <small class="text-danger"><?= FlashMessage::get("errorsCodEmpresa") ?></small>
           <?php endif ?>
         </div>
         <div class="mb-3">
           <label for="" class="form-label">Existencias disponibles:</label>
-          <input type="text" name="" id="" value="" class="form-control">
+          <input type="number" name="" id="" value="" class="form-control">
           <?php if (FlashMessage::isNotNull("errorsCodEmpresa")) : ?>
             <small class="text-danger"><?= FlashMessage::get("errorsCodEmpresa") ?></small>
           <?php endif ?>
@@ -174,21 +174,21 @@ $article = $data['article'];
 
         <div class="mb-3 ">
           <label for="udsUltEntrada" class="form-label">Uds. &uacute;ltima entrada</label>
-          <input type="text" name="udsUltEntrada" id="udsUltEntrada" value="" class="form-control">
+          <input type="number" name="udsUltEntrada" id="udsUltEntrada" value="" class="form-control">
           <?php if (FlashMessage::isNotNull("errorudsUltEntrada")) : ?>
             <small class="text-danger"><?= FlashMessage::get("errorudsUltEntrada") ?></small>
           <?php endif ?>
         </div>
         <div class="mb-3">
           <label for="Base" class="form-label">Base</label>
-          <input type="text" name="Base" id=Base"" value="" class="form-control">
+          <input type="number" name="Base" id=Base"" value="" class="form-control">
           <?php if (FlashMessage::isNotNull("errorBase")) : ?>
             <small class="text-danger"><?= FlashMessage::get("errorBase") ?></small>
           <?php endif ?>
         </div>
         <div class="mb-3">
           <label for="Favorito" class="form-label">Favorito</label>
-          <input type="text" name="Favorito" id="Favorito" value="" class="form-control">
+          <input type="number" name="Favorito" id="Favorito" value="" class="form-control">
           <?php if (FlashMessage::isNotNull("errorFavorito")) : ?>
             <small class="text-danger"><?= FlashMessage::get("errorFavorito") ?></small>
           <?php endif ?>
@@ -202,7 +202,7 @@ $article = $data['article'];
         </div>
         <div class="mb-3">
           <label for="undGrannel" class="form-label">Und. por grannel</label>
-          <input type="text" name="undGrannel" id="undGrannel" value="" class="form-control">
+          <input type="number" name="undGrannel" id="undGrannel" value="" class="form-control">
           <?php if (FlashMessage::isNotNull("errorundGrannel")) : ?>
             <small class="text-danger"><?= FlashMessage::get("errorundGrannel") ?></small>
           <?php endif ?>
@@ -216,14 +216,14 @@ $article = $data['article'];
         </div>
         <div class="mb-3">
           <label for="iva" class="form-label">Iva percent</label>
-          <input type="text" name="iva" id="iva" value="" class="form-control">
+          <input type="number" name="iva" id="iva" value="" class="form-control">
           <?php if (FlashMessage::isNotNull("erroriva")) : ?>
             <small class="text-danger"><?= FlashMessage::get("erroriva") ?></small>
           <?php endif ?>
         </div>
         <div class="mb-3">
           <label for="numOrdMostrar" class="form-label">N. orden mostrar</label>
-          <input type="text" name="numOrdMostrar" id="numOrdMostrar" value="" class="form-control">
+          <input type="number" name="numOrdMostrar" id="numOrdMostrar" value="" class="form-control">
           <?php if (FlashMessage::isNotNull("errornumOrdMostrar")) : ?>
             <small class="text-danger"><?= FlashMessage::get("errornumOrdMostrar") ?></small>
           <?php endif ?>
@@ -237,7 +237,7 @@ $article = $data['article'];
         </div>
         <div class="mb-3">
           <label for="peso" class="form-label">Peso:</label>
-          <input type="text" name="peso" id="peso" value="" class="form-control">
+          <input type="number" name="peso" id="peso" value="" class="form-control">
           <?php if (FlashMessage::isNotNull("errorpeso")) : ?>
             <small class="text-danger"><?= FlashMessage::get("errorpeso") ?></small>
           <?php endif ?>
@@ -251,14 +251,14 @@ $article = $data['article'];
         </div>
         <div class="mb-3">
           <label for="codCategoria" class="form-label">Código categor&iacute;a:</label>
-          <input type="text" name="codCategoria" id="codCategoria" value="" class="form-control">
+          <input type="number" name="codCategoria" id="codCategoria" value="" class="form-control">
           <?php if (FlashMessage::isNotNull("errorreqEq")) : ?>
             <small class="text-danger"><?= FlashMessage::get("errorreqEq") ?></small>
           <?php endif ?>
         </div>
         <div class="mb-3">
           <label for="CodigoSubcategoria" class="form-label">C&oacute;digo subcategor&iacute;a:</label>
-          <input type="text" name="CodigoSubcategoria" id="CodigoSubcategoria" value="" class="form-control">
+          <input type="number" name="CodigoSubcategoria" id="CodigoSubcategoria" value="" class="form-control">
           <?php if (FlashMessage::isNotNull("errorsCodEmpresa")) : ?>
             <small class="text-danger"><?= FlashMessage::get("errorsCodEmpresa") ?></small>
           <?php endif ?>

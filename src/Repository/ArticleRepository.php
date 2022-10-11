@@ -16,17 +16,17 @@ class ArticleRepository
 
     public function save(Article $article)
     {
-        $this->articleMapper->insert($article);
+        return $this->articleMapper->insert($article);
     }
 
     public function update(Article $article)
     {
-        $this->articleMapper->update($article);
+        return $this->articleMapper->update($article);
     }
     
     public function delete(Article $article)
     {
-        $this->articleMapper->delete($article);
+        return $this->articleMapper->delete($article);
     }
 
     public function find(int $id): ?Article

@@ -26,7 +26,7 @@ use App\Registry; ?>
           <tr>
             <th scope="col" class="d-none d-md-table-cell">#</th>
             <th scope="col">C&oacute;digo Articulo</th>
-            <th scope="col">Descripci&oactue;n</th>
+            <th scope="col">Descripci&oacute;n</th>
             <th scope="col" class="text-center">Acciones</th>
           </tr>
 

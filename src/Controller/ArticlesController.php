@@ -252,7 +252,7 @@ class ArticlesController
         FlashMessage::set("errortextoCaracteristicasTecnicas", "" . $e->getMessage());
       }
       //var_dump($article);
-
+     
       if (count($errors) === 0) {
         $isInserted = false;
         try {
