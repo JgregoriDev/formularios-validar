@@ -41,7 +41,6 @@ class FormaPagoMapper
       "SELECT * FROM fp"
     );
     $selectAllStmt->execute();
-    $array = $selectAllStmt->fetchAll();
     while ($row = $selectAllStmt->fetch())
       $array[] = FormaPago::fromArray($row);
     return $array;
