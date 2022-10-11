@@ -253,14 +253,14 @@ class FamiliaController
       }
       var_dump($familia);
       $isUpdated = false;
-      // try {
-      //   $isUpdated = $this->familiaRepository->update($familia,(int)$id);
-      // } catch (PDOException $e) {
-      //   FlashMessage::set("resultadoInsatisfactorio", "La familia no ha podido ser actualizada " . $e->getMessage());
-      // }
-      // $isUpdated ?
-      //   FlashMessage::set("resultadoSatisfactorio", "Familia actualizada de manera satisfactoria")
-      //   : "";
+      try {
+        $isUpdated = $this->familiaRepository->update($familia, (int)$id);
+      } catch (PDOException $e) {
+        FlashMessage::set("resultadoInsatisfactorio", "La familia no ha podido ser actualizada " . $e->getMessage());
+      }
+      $isUpdated ?
+        FlashMessage::set("resultadoSatisfactorio", "Familia actualizada de manera satisfactoria")
+        : "";
     }
     $response = new Response();
     $response->setView("familia/familia.form");

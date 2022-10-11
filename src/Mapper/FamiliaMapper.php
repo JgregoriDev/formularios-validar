@@ -98,15 +98,16 @@ class FamiliaMapper
   public function update(Familia $obj, int $id)
   {
     $values = $obj->toArray($obj);
-    $sql = "
-    UPDATE `familia`
-     SET `CODFAMILIA`=:codFamilia,
-     `NOMBRE`=:nombreFamilia,
-     `MARGEN`=:margen,
-      WHERE CODFAMILIA`=".$id.";";
-      // `IVAPERCENT`=:ivaPercent,
-      // `INICIOCODEAN`=:inicioCodean,
-      // `RE`=:re,
+    $sql = "UPDATE `familia` SET
+    CODFAMILIA=:codFamilia,
+    NOMBRE=:nombreFamilia,
+    MARGEN=:margen,
+    IVAPERCENT=:ivaPercent,
+    ESMANOOBRA=:esManoObra,
+    INICIOCODEAN=:inicioCodean,
+    RE=:RE
+    WHERE CODFAMILIA=$id;
+    ";
     $updateStmt = $this->pdo->prepare($sql);
     var_dump($sql);
     $codFamilia = $obj->getCodFamilia();
@@ -120,9 +121,13 @@ class FamiliaMapper
     $codEAN = $obj->getInicioCodean();
     var_dump($id);
     $updateStmt->execute([
-      ':codFamilia' => $codFamilia,
-      ':nombreFamilia' => $nombreFamilia,
-      ':margen' => $margen
+      ":codFamilia"=>$codFamilia,
+      ":nombreFamilia"=>$nombreFamilia,
+      ":margen"=>$margen,
+      ":ivaPercent"=>$ivaPercent,
+      ":esManoObra"=>1,
+      ":inicioCodean"=>$esAnimales,
+      ":RE"=>$re
     ]);
     // ':ivaPercent' => $ivaPercent,
     //   ':inicioCodean' => $codEAN,
