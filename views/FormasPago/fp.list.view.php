@@ -38,19 +38,20 @@ use App\Registry; ?>
         </thead>
         <tbody>
           <?php foreach ($fps as $key => $value) : ?>
-            <tr id="<?= $value['CODFP'] ?>" class="<?= $key % 2 !== 0 ? "bg-light" : "" ?>">
+          
+            <tr id="<?= $value->getCodEmpresa() ?>" class="<?= $key % 2 !== 0 ? "bg-light" : "" ?>">
 
               <td class="d-none d-md-table-cell"><?= $key + 1 ?></td>
-              <td><?= $value['CODFP'] ?></td>
-              <td><?= $value['NOMBRE']   ?></td>
-              <td class="d-none d-md-table-cell"><?= $value['NPLAZOS'] ?></td>
-              <td class="d-none d-md-table-cell"><?= $value['DISTANCIA'] ?></td>
-              <td class="d-none d-md-table-cell"><?= $value['CODEEMPRESA'] ?></td>
+              <td><?= $value->getCodEmpresa() ?></td>
+              <td><?= $value->getNombre()   ?></td>
+              <td class="d-none d-md-table-cell"><?= $value->getNumPlazos() ?></td>
+              <td class="d-none d-md-table-cell"><?= $value->getDistancia() ?></td>
+              <td class="d-none d-md-table-cell"><?= $value->getCodEmpresa() ?></td>
               <td class="text-center">
                 <a class="btn btn-danger  mb-2 mb-sm-0" href=<?= Registry::get(\App\Registry::ROUTER)->generate(
                                                                 "borrar_FormaPago",
                                                                 [
-                                                                  "id" => $value['CODFP']
+                                                                  "id" => $value->getCodFp()
                                                                 ]
                                                               ) ?>>
                   <i class="bi bi-trash2"></i>
@@ -59,7 +60,7 @@ use App\Registry; ?>
                 <a class="btn btn-warning text-white  mb-2 mb-sm-0" href="<?= Registry::get(\App\Registry::ROUTER)->generate(
                                                                             "actualizar_FormaPago",
                                                                             [
-                                                                              "id" => $value['CODFP']
+                                                                              "id" => $value->getCodFp()
                                                                             ]
                                                                           ) ?>">
                   <i class="bi bi-pencil-square"></i>
@@ -68,7 +69,7 @@ use App\Registry; ?>
                 <span class="d-none">Modificiar</span>
                 <a title="Modificar" class="btn btn-secondary text-white" href="<?= Registry::get(\App\Registry::ROUTER)->generate(
                                                                                   "conseguir_FormaPago",
-                                                                                  ["id" =>  $value['CODFP']]
+                                                                                  ["id" =>  $value->getCodFp()]
                                                                                 ) ?>">
                   <i class="bi bi-eye"></i>
                   <span class="d-none">Observar</span>

@@ -11,7 +11,7 @@ use App\Registry; ?>
       <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="<?= Registry::get(\App\Registry::ROUTER)->generate("inicio", []) ?>">Inicio</a></li>
-          <li class="breadcrumb-item"><a href="<?= Registry::get(\App\Registry::ROUTER)->generate("conseguir_families", []) ?>">Familia</a></li>
+          <li class="breadcrumb-item"><a href="<?= Registry::get(\App\Registry::ROUTER)->generate("conseguir_families", []) ?>">Familias</a></li>
           <li class="breadcrumb-item active" aria-current="page"><?= $data["titulo"] ?></li>
         </ol>
       </nav>
