@@ -4,6 +4,7 @@ use App\FlashMessage;
 use App\Entity\Familia;
 use App\Registry;
 
+$fps = $data["fps"];
 $errors = $data["errors"];
 $proveedor = $data["proveedor"]
 ?>
@@ -157,6 +158,9 @@ $proveedor = $data["proveedor"]
           <label for="Tipo  gasto" class="form-label">Codigo forma pago:</label>
           <select class="form-select" name="codFP" id="codFP">
             <option value="0" selected>Selecciona una opcion</option>
+            <?php foreach ($fps as $fp) : ?>
+              <option value="<?= $fp->getCodFp() ?>"><?= $fp->getCodFp() . "- " . $fp->getNombre() ?></option>
+            <?php endforeach; ?>
           </select>
           <?php if (FlashMessage::isNotNull("ErrorCodProveedor")) : ?>
             <small class="text-danger"><?= FlashMessage::get("ErrorCodProveedor") ?></small>
@@ -171,7 +175,7 @@ $proveedor = $data["proveedor"]
         </div>
         <div class="mb-3">
           <label for="ClaveIdEnpaisResidencia" class="form-label">Clave Id en pais Residencia:</label>
-          <input type="text" class="form-control" id="ClaveIdEnpaisResidencia" value="<?= $proveedor->getCodPaisOficial() ?>" minlength="9" maxlength="9" name="ClaveIdEnpaisResidencia">
+          <input type="text" class="form-control" id="ClaveIdEnpaisResidencia" value="<?= $proveedor->getCodPaisOficial() ?>" name="ClaveIdEnpaisResidencia">
           <?php if (FlashMessage::isNotNull("ErrorCodProveedor")) : ?>
             <small class="text-danger"><?= FlashMessage::get("ErrorCodProveedor") ?></small>
           <?php endif ?>
