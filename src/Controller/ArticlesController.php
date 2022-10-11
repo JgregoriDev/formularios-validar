@@ -97,8 +97,9 @@ class ArticlesController
     $proveedors = $this->conseguirProveedors();
     $response = new Response();
     if ($this->request->isPost()) {
-      $article->setCodArticle((int)$_POST['codArticulo'])->setCodFamilia((int)$_POST['codFamilia']);
-      $isInserted=$this->articleRepository->save($article);
+      var_dump($_POST);
+      // $article->setCodArticle((int)$_POST['codArticulo'])->setCodFamilia((int)$_POST['codFamilia']);
+      // $isInserted=$this->articleRepository->save($article);
     }
     $response->setView("index");
     $titulo = $response->setTitulo("Insertar articulo")->getTitulo();

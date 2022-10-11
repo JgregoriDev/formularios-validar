@@ -12,7 +12,7 @@ $article = $data['article'];
       <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="<?= Registry::get(\App\Registry::ROUTER)->generate("inicio", []) ?>">Inicio</a></li>
-          <li class="breadcrumb-item"><a href="<?= Registry::get(\App\Registry::ROUTER)->generate("conseguir_articles", []) ?>">Artículo</a></li>
+          <li class="breadcrumb-item"><a href="<?= Registry::get(\App\Registry::ROUTER)->generate("conseguir_articles", []) ?>">Art&iacute;culo</a></li>
           <li class="breadcrumb-item active" aria-current="page"><?= $data["titulo"] ?></li>
         </ol>
       </nav>
@@ -25,13 +25,13 @@ $article = $data['article'];
       ?>
       <form method="POST" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <div class="mb-3">
-          <label for="codArticulo" class="form-label">Código artículo:</label>
+          <label for="codArticulo" class="form-label">C&oacute;digo art&iacute;culo:</label>
           <input type="number" class="form-control" value="<?= $article->getCodArticle() ?>" required id="codArticulo" value="" min="0" name="codArticulo">
         </div>
         <div class="mb-3">
-          <label for="codFamilia" class="form-label">Código família:</label>
+          <label for="codFamilia" class="form-label">C&oacute;digo fam&iacute;lia:</label>
           <select required name="codFamilia" id="codFamilia" class="form-select  <?php count($families) === 0 ? 'border-danger' : '' ?>">
-            <option value="" <?= $article->getCodFamilia() === 0 ? 'selected disabled' : '' ?> id="">Selecciona una opción</option>
+            <option value="" <?= $article->getCodFamilia() === 0 ? 'selected disabled' : '' ?> id="">Selecciona una opci&oacute;n</option>
             <?php if (count($families)  > 0) : ?>
               <?php foreach ($families as $familia) : ?>
                 <option value="<?= $familia->getCodFamilia() ?>" id=""><?= $familia->getCodFamilia() . " - " . $familia->getNombreFamilia() ?></option>
@@ -41,7 +41,7 @@ $article = $data['article'];
           </select>
         </div>
         <div class="mb-3">
-          <label for="codSubfamilia" class="form-label  <?php count($subfamilies) === 0 ? 'border-danger' : '' ?>">Código subfamilia:</label>
+          <label for="codSubfamilia" class="form-label  <?php count($subfamilies) === 0 ? 'border-danger' : '' ?>">C&oacute;digo subfamilia:</label>
           <select name="codSubfamilia" id="codSubfamilia" class="form-select <?php count($subfamilies) === 0 ? 'border-danger' : '' ?>">
             <option value="" <?= !isset($article) ? 'selected disabled' : '' ?> id="">Selecciona una opción</option>
             <?php if (count($subfamilies) > 0) : ?>
@@ -53,7 +53,7 @@ $article = $data['article'];
           </select>
         </div>
         <div class="mb-3">
-          <label for="codMarca" class="form-label <?php count($marques) === 0 ? 'border-danger' : '' ?>">Código marca:</label>
+          <label for="codMarca" class="form-label <?php count($marques) === 0 ? 'border-danger' : '' ?>">C&oacute;digo marca:</label>
           <select name="codMarca" id="codMarca" class="form-select">
             <option value="" <?= !isset($article) ? 'selected disabled' : '' ?> id="">Selecciona una opción</option>
             <?php if (count($marques) > 0) : ?>
@@ -67,7 +67,7 @@ $article = $data['article'];
         </div>
 
         <div class="mb-3">
-          <label for="codProveedors" class="form-label <?php count($proveedors) === 0 ? 'border-danger' : '' ?>">Código proveedor:</label>
+          <label for="codProveedors" class="form-label <?php count($proveedors) === 0 ? 'border-danger' : '' ?>">C&oacute;digo proveedor:</label>
           <select name="codProveedors" id="codProveedors" class="form-select">
             <option value="" <?= !isset($article) ? 'selected disabled' : '' ?> id="">Selecciona una opción</option>
             <?php if (count($proveedors) > 0) : ?>
@@ -82,7 +82,7 @@ $article = $data['article'];
 
 
         <div class="mb-3">
-          <label for="codEan" class="form-label">Código ean:</label>
+          <label for="codEan" class="form-label">C&oacute;digo ean:</label>
           <input type="text" name="codEan" id="" value="codEan" class="form-control">
         </div>
         <div class="mb-3">
@@ -127,7 +127,7 @@ $article = $data['article'];
         </div>
 
         <div class="mb-3 ">
-          <label for="udsUltEntrada" class="form-label">Uds. última entrada</label>
+          <label for="udsUltEntrada" class="form-label">Uds. &uacute;ltima entrada</label>
           <input type="text" name="udsUltEntrada" id="udsUltEntrada" value="" class="form-control">
         </div>
         <div class="mb-3">
@@ -171,11 +171,11 @@ $article = $data['article'];
           <input type="text" name="reqEq" id="reqEq" value="" class="form-control">
         </div>
         <div class="mb-3">
-          <label for="codCategoria" class="form-label">Código categoría:</label>
+          <label for="codCategoria" class="form-label">Código categor&iacute;a:</label>
           <input type="text" name="codCategoria" id="codCategoria" value="" class="form-control">
         </div>
         <div class="mb-3">
-          <label for="CodigoSubcategoria" class="form-label">Código subcategoría:</label>
+          <label for="CodigoSubcategoria" class="form-label">C&oacute;digo subcategor&iacute;a:</label>
           <input type="text" name="CodigoSubcategoria" id="CodigoSubcategoria" value="" class="form-control">
         </div>
         <div class="mb-3">
@@ -183,16 +183,16 @@ $article = $data['article'];
           <input type="text" name="" id="" value="" class="form-control">
         </div>
         <div class="mb-3">
-          <label for="" class="form-label">Caracteristicas técnicas</label>
+          <label for="" class="form-label">Caracteristicas t&eacute;cnicas</label>
           <input type="text" name="" id="" value="" class="form-control">
         </div>
         <div class="mb-3 form-floating">
           <textarea class="form-control" placeholder="Descripción artículo:" id="floatingTextarea"></textarea>
-          <label for="" class="form-label">Descripción artículo:</label>
+          <label for="" class="form-label">Descripci&oacute;n artículo:</label>
         </div>
         <div class="mb-3 form-floating">
           <textarea class="form-control" placeholder="Descripción artículo:" id="floatingTextarea"></textarea>
-          <label for="" class="form-label">Caracteristicas técnicas:</label>
+          <label for="" class="form-label">Caracteristicas t&eacute;cnicas:</label>
         </div>
 
 
