@@ -202,16 +202,6 @@
         <?php if (isset($data['titulo'])) : ?>
           <h1><?= $data["titulo"]; ?></h1>
         <?php endif; ?>
-        <?php if (isset($data['errors'])) : ?>
-          <?php $errors = $data['errors'] ?>
-          <?php if (count($errors) > 0 && isset($errors)) : ?>
-            <?php foreach ($errors as $error) ?>
-            <ul class="bg-danger">
-              <li class="text-white"><?= $error ?></li>
-            </ul>
-            <?php $endforeach; ?>
-          <?php endif; ?>
-        <?php endif; ?>
 
         <?= $content ?>
       </main>

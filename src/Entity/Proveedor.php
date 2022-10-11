@@ -142,7 +142,7 @@ class Proveedor
    */
   public function setCuentaPago(String $cuentaPago): self
   {
-    Assert::length($cuentaPago, 5, 'El valor de proveedor debe ser mayor de 0');
+    //Assert::length($cuentaPago, 5, 'El valor de proveedor debe ser mayor de 0');
     $this->cuentaPago = $cuentaPago;
 
     return $this;
@@ -616,7 +616,7 @@ class Proveedor
    */
   public function setCodPaisOficial(String $codPaisOficial): self
   {
-    Assert::length($codPaisOficial, 2, "");
+    Assert::length($codPaisOficial, 2, "El campo codigo Pais requiere una longitud de 2 caracteres");
     $this->codPaisOficial = $codPaisOficial;
 
     return $this;
@@ -676,7 +676,7 @@ class Proveedor
    *
    * @return int
    */
-  public function getEsUnversion(): int
+  public function getEsInversion(): int
   {
     return $this->esUnversion;
   }

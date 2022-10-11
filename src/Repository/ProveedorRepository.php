@@ -17,17 +17,17 @@ class ProveedorRepository
 
     public function save(Proveedor $proveedor)
     {
-        $this->proveedorMapper->insert($proveedor);
+        return $this->proveedorMapper->insert($proveedor);
     }
 
     public function update(Proveedor $proveedor, int $idAux)
     {
-        $this->proveedorMapper->update($proveedor, $idAux);
+        return $this->proveedorMapper->update($proveedor, $idAux);
     }
 
     public function delete(Proveedor $proveedor)
     {
-        $this->proveedorMapper->delete($proveedor);
+        return $this->proveedorMapper->delete($proveedor);
     }
 
     public function find(int $id): ?Proveedor

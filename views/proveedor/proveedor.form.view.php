@@ -148,7 +148,7 @@ $proveedor = $data["proveedor"]
         </div>
         <div class="mb-3">
           <label for="Tipo  gasto" class="form-label">Codigo Pais oficial:</label>
-          <input type="text" class="form-control" id="codPaisOficial" value="<?= $proveedor->getNif() ?>" minlength="9" maxlength="9" name="codPaisOficial">
+          <input type="text" class="form-control" id="codPaisOficial" value="<?= $proveedor->getCodPaisOficial() ?>" minlength="2" maxlength="4" name="codPaisOficial">
           <?php if (FlashMessage::isNotNull("ErrorCodProveedor")) : ?>
             <small class="text-danger"><?= FlashMessage::get("ErrorCodProveedor") ?></small>
           <?php endif ?>
@@ -192,7 +192,15 @@ $proveedor = $data["proveedor"]
             <small class="text-danger"><?= FlashMessage::get("ErrorCodProveedor") ?></small>
           <?php endif ?>
         </div>
-
+        <div class="mb-3">
+          <?php if (FlashMessage::isNotNull("resultadoSatisfactorio")) : ?>
+            <small class="text-success"><?= FlashMessage::get("resultadoSatisfactorio") ?></small>
+          <?php endif ?>
+          <?php if (FlashMessage::isNotNull("resultadoInsatisfactorio")) : ?>
+            <small class="text-danger"><?= FlashMessage::get("resultadoInsatisfactorio") ?></small>
+          <?php endif ?>
+          </small>
+        </div>
         <div class="mb-3">
           <a href="<?= Registry::get(\App\Registry::ROUTER)->generate("conseguir_Proveedors", [])  ?>" class="<?= FlashMessage::isNotNull("resultadoSatisfactorio") ? 'd-none' : 'd-inline btn btn-secondary' ?>">
             <span>Volver a la lista</span>

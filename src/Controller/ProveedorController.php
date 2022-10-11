@@ -67,10 +67,13 @@ class ProveedorController
     try {
       # code...
       $proveedor->setDomicilio("");
+      
     } catch (InvalidArgumentException $e) {
       $errors[] = "$e->getMessage()";
     }
+    $proveedor->setCuentaPago("");
     if ($this->request->isPost()) {
+      
       try {
         $proveedor->setCodProveedor((int)$this->request->getPOST("codProveedor"));
       } catch (InvalidArgumentException $e) {
@@ -185,13 +188,20 @@ class ProveedorController
         $errors[] = $e->getMessage();
         FlashMessage::set("ErrorPais", "Error en el campo." . $e->getMessage());
       }
+      var_dump(count($errors));
       if (count($errors) === 0) {
         $isInserted = false;
         try {
-          # code...
+          
           $isInserted = $this->proveedorRepository->save($proveedor);
         } catch (PDOException $e) {
-          FlashMessage::set("ErrorPais", "Error el proveedor no ha podido ser insertado." . $e->getMessage());
+          FlashMessage::set("resultadoInsatisfactorio", "Error el proveedor no ha podido ser insertado." . $e->getMessage());
+        }
+        $isInserted?FlashMessage::set("resultadoSatisfactorio", "El proveedor ha podido ser insertado correctamente."):
+        "";
+      }else{
+        foreach ($errors as $error ) {
+          echo $error;
         }
       }
     }
