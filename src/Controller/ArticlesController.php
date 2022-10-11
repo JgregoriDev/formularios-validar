@@ -252,7 +252,7 @@ class ArticlesController
         FlashMessage::set("errortextoCaracteristicasTecnicas", "" . $e->getMessage());
       }
       //var_dump($article);
-     
+
       if (count($errors) === 0) {
         $isInserted = false;
         try {
@@ -280,8 +280,15 @@ class ArticlesController
       $errors[] = $e->getMessage();
     }
     if ($this->request->isPost()) {
+      $isDeleted = false;
       if (isset($article))
-        $this->articleRepository->delete($article);
+        try {
+          $isDeleted = $this->articleRepository->delete($article);
+          //code...
+        } catch (PDOException $th) {
+          FlashMessage::set("errortextoDescripcion", "" . $e->getMessage());
+        }
+      $isDeleted ? FlashMessage::set("resultadoSatisfactorio", "Se ha borrado de manera satisfactoria el articulo") : "";
     }
     $response = new Response();
     $response->setView("index");

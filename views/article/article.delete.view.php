@@ -1,5 +1,6 @@
 <?php
 
+use App\FlashMessage;
 use App\Registry; ?>
 <div class="container-fluid">
   <div class="row">
@@ -39,7 +40,8 @@ use App\Registry; ?>
               </a>
               <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <input type="hidden" name="familia" value=" <?= $article->getCodArticle(); ?>">
-                <button type="submit" class="btn btn-danger">
+                <button type="submit" class="btn btn-danger <?= (FlashMessage::isNotNull("resultadoSatisfactorio"))?'btn-secondary':'btn-danger' ?> " <?= (FlashMessage::isNotNull("resultadoSatisfactorio")) 
+                ? "disabled" : "" ?>>
                   <i class="bi bi-trash2"></i>
                   <span class="d-none d-lg-inline">
                     Borrar familia
@@ -50,7 +52,13 @@ use App\Registry; ?>
             </div>
           </div>
         </div>
-
+        <div>
+          <?php if (FlashMessage::isNotNull("resultadoSatisfactorio")) : ?>
+            <small class="text-sucess">
+              <?= FlashMessage::get("resultadoSatisfactorio") ?>
+            </small>
+          <?php endif; ?>
+        </div>
     </div>
     <div class="col-2"></div>
   </div>
