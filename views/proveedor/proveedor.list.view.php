@@ -28,7 +28,7 @@ use App\Registry; ?>
             <?php foreach ($proveedores as $key => $value) : ?>
               <tr class="<?= $value->getCodProveedor() ?>" class="<?= $key%2!==0?"bg-light":"" ?>">
 
-                <td class="d-none d-lg-table-cell"><?= $key ?></td>
+                <td class="d-none d-lg-table-cell"><?= $key+1 ?></td>
                 <td><?= $value->getCodProveedor() ?></td>
                 <td><?= $value->getRazonSocial()   ?></td>
                 <td class="d-none d-lg-table-cell"><?= $value->getNif() ?></td>

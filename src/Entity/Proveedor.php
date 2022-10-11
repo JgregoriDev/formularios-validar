@@ -14,6 +14,7 @@ class Proveedor
   private String $nif;
   private String $domicilio;
   private String $poblacion;
+  private String $cuentaPago;
   private String $provincia;
   private String $email;
   private String $www;
@@ -31,28 +32,56 @@ class Proveedor
   private String $Tiene_RE;
   private int $esUnversion;
   private String $Pais;
+  private String $codigoPostal;
 
-  public function __construct(int $codProveedor = 0, String $razonSocial, String $nif)
-  {
-    $this->codProveedor = 0;
-    $this->razonSocial = 0;
-    $this->nif = '';
-    $this->domicilio = '';
-    $this->poblacion = '';
-    $this->www = '';
-    $this->tlfn1 = '';
-    $this->tlfn2 = '';
-    $this->mobil = '';
-    $this->cuenta = '';
-    $this->tipoGasto = 0;
-    $this->ivaPercent = 0;
-    $this->ab = 0;
-    $this->codFP = 0;
-    $this->codPaisOficial = 0;
-    $this->nifPaisRecidencia = 0;
-    $this->Tiene_RE = 0;
-    $this->esUnversion = 0;
-    $this->Pais = '';
+  public function __construct(
+    int $codProveedor = 0,
+    String $razonSocial = '',
+    String $nif = '',
+    String $domicilio = '',
+    String $provincia = '',
+    String $codigoPostal = '',
+    String $email = '',
+    String $www = '',
+    String $poblacion = '',
+    String $tlfn1 = '',
+    String $tlfn2 = '',
+    String $fax = '',
+    String $mobil = '',
+    String $cuenta = '',
+    int $tipoGasto = 0,
+    float $ivaPercent = 0,
+    int $ab = 0,
+    int $codFP = 0,
+    String $codPaisOficial = '',
+    String $nifPaisRecidencia = '',
+    String $Tiene_RE = '',
+    int $esUnversion = 0,
+    String $Pais = ''
+  ) {
+    $this->codProveedor = $codProveedor;
+    $this->razonSocial = $razonSocial;
+    $this->nif = $nif;
+    $this->domicilio = $domicilio;
+    $this->poblacion = $poblacion;
+    $this->email = $email;
+    $this->provincia = $provincia;
+    $this->codigoPostal = $codigoPostal;
+    $this->www = $www;
+    $this->fax = $fax;
+    $this->tlfn1 = $tlfn1;
+    $this->tlfn2 = $tlfn2;
+    $this->mobil = $mobil;
+    $this->cuenta = $cuenta;
+    $this->tipoGasto = $tipoGasto;
+    $this->ivaPercent = $ivaPercent;
+    $this->ab = $ab;
+    $this->codFP = $codFP;
+    $this->codPaisOficial = $codPaisOficial;
+    $this->nifPaisRecidencia = $nifPaisRecidencia;
+    $this->Tiene_RE = $Tiene_RE;
+    $this->esUnversion = $esUnversion;
+    $this->Pais = $Pais;
   }
   public static function fromArray(array $data): Proveedor
   {
@@ -62,8 +91,31 @@ class Proveedor
       $id = (int)$data["CODPROVEEDOR"];
     return new Proveedor(
       $id,
-      $data["RAZONSOCIAL"],
-      $data["NIF"]
+      $data["RAZONSOCIAL"] ?? '',
+      $data["NIF"] ?? '',
+      $data["DOMICILIO"] ?? '',
+      $data["PROVINCIA"] ?? '',
+      $data["CODPOSTAL"] ?? '',
+      $data["EMAIL"] ?? '',
+      $data["WWW"] ?? '',
+      $data["POBLACION"] ?? '',
+      $data["TFNO1"] ?? '',
+      $data["TFNO2"] ?? '',
+      $data["FAX"] ?? '',
+      $data["MOVIL"] ?? '',
+      $data["CUENTA"] ?? '',
+      (int)$data["CUENTAPAGO"] ?? 0,
+      (float)$data["TIPOGASTO"] ?? 0,
+      (int)$data["AB"] ?? 0,
+      (int)$data["IVAPERCENT"] ?? 0,
+      $data["CODFP"] ?? '',
+      $data["CODPAIS_OFICIAL"] ?? '',
+      $data["NIFPAISRESIDENCIA"] ?? '',
+      (int)$data["CLAVEIDENPAISRESIDENCIA"] ?? '',
+      $data["CONTAB_INTRACOM"] ?? '',
+      $data["TIENE_RE"] ?? '',
+      $data["ESINVERSIONSUJETOPASIVO"] ?? '',
+      $data["PAIS"] ?? '',
     );
   }
 
@@ -76,6 +128,44 @@ class Proveedor
     ];
   }
 
+  public function getCuentaPago(): string
+  {
+    return $this->cuentaPago;
+  }
+
+  /**
+   * Set the value of CuentaPago
+   *
+   * @param String $cuentaPago
+   *
+   * @return self
+   */
+  public function setCuentaPago(String $cuentaPago): self
+  {
+    Assert::length($cuentaPago, 5, 'El valor de proveedor debe ser mayor de 0');
+    $this->cuentaPago = $cuentaPago;
+
+    return $this;
+  }
+  public function getCodigoPostal(): string
+  {
+    return $this->codigoPostal;
+  }
+
+  /**
+   * Set the value of codigoPostal
+   *
+   * @param String $codigoPostal
+   *
+   * @return self
+   */
+  public function setCodigoPostal(String $codigoPostal): self
+  {
+    Assert::length($codigoPostal, 5, 'El valor de proveedor debe ser mayor de 0');
+    $this->codigoPostal = $codigoPostal;
+
+    return $this;
+  }
   /**
    * Get the value of codProveedor
    *
@@ -526,7 +616,7 @@ class Proveedor
    */
   public function setCodPaisOficial(String $codPaisOficial): self
   {
-    Assert::lenght($codPaisOficial, 2, "");
+    Assert::length($codPaisOficial, 2, "");
     $this->codPaisOficial = $codPaisOficial;
 
     return $this;
@@ -551,7 +641,7 @@ class Proveedor
    */
   public function setNifPaisRecidencia(String $nifPaisRecidencia): self
   {
-    Assert::maxLength($nifPaisRecidencia,9,"");
+    Assert::maxLength($nifPaisRecidencia, 9, "");
     $this->nifPaisRecidencia = $nifPaisRecidencia;
 
     return $this;
@@ -624,7 +714,7 @@ class Proveedor
    */
   public function setPais(String $Pais): self
   {
-    Assert::maxLength($Pais,50,"");
+    Assert::maxLength($Pais, 50, "");
     $this->Pais = $Pais;
 
     return $this;
