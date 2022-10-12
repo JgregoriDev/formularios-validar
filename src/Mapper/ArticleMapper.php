@@ -58,24 +58,26 @@ class ArticleMapper
 
   public function insert(Article $obj)
   {
-  
 
-    $insertStmt = $this->pdo->prepare(
-      "INSERT INTO familia(CODARTICULO, CODMARCA,CODPROVEEDOR,CODSUBFAMILIA,Codigo,CODIGOEAN,REFERENCIAPROVEEDOR,
-      REFERENCIAMARCA,DESCRIPCION,AUX_MARGEN,MARGEN,BASE,EXISTENCIASDISPONIBLE,PVP_OFERTA_MOSTRADOR,PVP,PVP2
-      ESMANOOBRA, UDS_ULTIMAENTRADA, BASE2,FAVORITO,POSIBLEB, CODART_GRANEL, UD_X_UDGRANNEL, IMAGEN, IVAPERCENT, NORDEN_MOSTRAR,
-      INTRASTAT, UMEDIDA, PESO, REQ_EQ, CODCATEGORIA, CODSUBCATEGORIA, IDWOOCOMMERCE, CARACTECNICAS) VALUES
-      (:codArticulo, :codMarca, :codProveedor, :codSubfamilia, :codigo,
-      :refenreciaMarca, :descripcion, :auxMargen, :margenbase, :existenciasDisponibles,
-      :pvpOfertaMostrador, :pvp, :pvp2, :esManoObra, :uMedida,
-      :peso, :udsUltEntrada, :base2, :favorito,:posibleb,
-      :codArticuloGranel,:udPorGrannel,:imagen,:ivaPercent,:nordenMostra,
-      :intrastat,:uMedida,:peso:reqEq,:codCategoria,:codSubcategoria,
-      :idWoocomerce,:caracTecnicas)"
-    );
+    $sql =  "INSERT INTO  articulo (CODARTICULO, CODFAMILIA, CODMARCA, CODPROVEEDOR,
+     DESCRIPCION,CODIGOEAN,REFERENCIAPROVEEDOR,
+     REFERENCIAMARCA,AUX_MARGEN,MARGEN,
+     BASE, EXISTENCIASDISPONIBLE, PVP_OFERTA_MOSTRADOR, 
+     PVP, PVP2, ESMANOOBRA, UDS_ULTIMAENTRADA
+     ) VALUES
+      (:codArticulo, :codFamilia, :codMarca, 
+      :codProveedor, :descripcion,:codEan,:refProveedor,
+      :refMarca,:auxMargen,:margen,
+      :base,:existenciaDisponibles,:pvpMostrador,
+      :pvp, :pvp2, :esManoObra, :unsdUltEntrada
+      )";
+
+    $insertStmt = $this->pdo->prepare($sql);
     $codArticulo = $obj->getCodArticle() ?? 0;
+    $codFamilia = $obj->getCodFamilia() ?? 0;
     $codMarca = $obj->getCodMarca() ?? 0;
     $codProveedor = $obj->getCodProveedor() ?? 0;
+    // var_dump($codProveedor);
     $codigo = $obj->getCodigo() ?? 0;
     $codigoEan = $obj->getCodean() ?? '0';
     $referenciaProveedor = $obj->getReferenciaProveedor() ?? 0;
@@ -114,40 +116,63 @@ class ArticleMapper
     $caracTecnicas = $obj->getCaracTecnicas() ?? 0;
     $insertStmt->execute([
       ":codArticulo" => $codArticulo,
+      ":codFamilia" => $codFamilia,
       ":codMarca" => $codMarca,
       ":codProveedor" => $codProveedor,
-      ":codigo" => $codigo,
-      ":codigoEan" => $codigoEan,
-      ":referenciaProveedor" => $referenciaProveedor,
       ":descripcion" => $descripcion,
-      ":auxMargen" => $auxMargen,
-      ":margenbase" => 0,
-      ":existenciasDisponibles" => $existenciasDisponibles,
-      ":pvpOfertaMostrador" => $pvpOfertaMostrador,
-      ":pvp" => $pvp,
-      ":pvp2" => $pvp2,
-      ":refenreciaMarca" => $refenreciaMarca,
-      ":esManoObra" => $esManoObra,
-      ":uMedida" => $uMedida,
-      ":peso" => $peso,
-      ":udsUltEntrada" => $udsUltEntrada,
-      ":base2" => $base2,
-      ":favorito" => $favorito,
-      ":posibleb" => $posibleb,
-      ":codArticuloGranel" => $codArticuloGranel,
-      ":udPorGrannel" => $udPorGrannel,
-      ":imagen" => $imagen,
-      ":ivaPercent" => $ivaPercent,
-      ":nordenMostra" => $nordenMostra,
-      ":intrastat" => $intrastat,
-      ":uMedida" => $uMedida,
-      ":peso" => $peso,
-      ":reqEq" => $req_eq,
-      ":codCategoria" => $codCat,
-      ":codSubcategoria" => $codSubCat,
-      ":idWoocomerce" => $idWoocommerce,
-      ":caracTecnicas" => $caracTecnicas
+      ":codEan" => $codigoEan,
+      ":refProveedor" => $referenciaProveedor,
+      ":refMarca"=>$refMarca, 
+      ":auxMargen"=>$auxMargen, 
+      ":margen"=>$margenBase,
+      ":auxMargen"=>$auxMargen,
+      ":margen"=>$margenBase,
+      ":base"=>$base2,
+      ":existenciaDisponibles"=>$existenciasDisponibles,
+      ":pvpMostrador"=>$pvpOfertaMostrador,
+      ":pvp"=>$pvp,
+      ":pvp2"=>$pvp2,
+      ":esManoObra"=>$esManoObra,
+      ":unsdUltEntrada"=>$udsUltEntrada,
     ]);
+    // $insertStmt->execute([
+    //   ":codArticulo" => $codArticulo,
+
+    //   ":codMarca" => $codMarca,
+    //   ":codProveedor" => $codProveedor,
+    //   ":codigo" => $codigo,
+    //   ":codigoEan" => $codigoEan,
+    //   ":referenciaProveedor" => $referenciaProveedor,
+    //   ":descripcion" => $descripcion,
+    //   ":auxMargen" => $auxMargen,
+    //   ":margenbase" => 0,
+    //   ":existenciasDisponibles" => $existenciasDisponibles,
+    //   ":pvpOfertaMostrador" => $pvpOfertaMostrador,
+    //   ":pvp" => $pvp,
+    //   ":pvp2" => $pvp2,
+    //   ":refenreciaMarca" => $refenreciaMarca,
+    //   ":esManoObra" => $esManoObra,
+    //   ":uMedida" => $uMedida,
+    //   ":peso" => $peso,
+    //   ":udsUltEntrada" => $udsUltEntrada,
+    //   ":base2" => $base2,
+    //   ":favorito" => $favorito,
+    //   ":posibleb" => $posibleb,
+    //   ":codArticuloGranel" => $codArticuloGranel,
+    //   ":udPorGrannel" => $udPorGrannel,
+    //   ":imagen" => $imagen,
+    //   ":ivaPercent" => $ivaPercent,
+    //   ":nordenMostra" => $nordenMostra,
+    //   ":intrastat" => $intrastat,
+    //   ":uMedida" => $uMedida,
+    //   ":peso" => $peso,
+    //   ":reqEq" => $req_eq,
+    //   ":codCategoria" => $codCat,
+    //   ":codSubcategoria" => $codSubCat,
+    //   ":idWoocomerce" => $idWoocommerce,
+    //   ":caracTecnicas" => $caracTecnicas
+    // ]);
+    var_dump($insertStmt->rowCount());
     if ($insertStmt->rowCount() > 0)
       return true;
     return false;
@@ -157,20 +182,20 @@ class ArticleMapper
   {
     $values = $obj->toArray($obj);
     $updateStmt = $this->pdo->prepare(
-      "UPDATE familia 
+      "UPDATE articulo 
               set
               CODARTICULO=:codArticulo,
               CODMARCA=:codMarca,
               CODPROVEEDOR=:codProveedor,
               CODSUBFAMILIA=:codSubfamilia,
               Codigo=:codigo,
-              CODIGOEAN=:,
-              REFERENCIAPROVEEDOR=:,
+              CODIGOEAN=:codEan,
+              REFERENCIAPROVEEDOR=:referenciaProveedor,
               REFERENCIAMARCA=:refenreciaMarca,
               DESCRIPCION=:descripcion,
               AUX_MARGEN=:auxMargen,
               MARGEN=:margenbase,
-              BASE=:,
+              BASE=:base,
               EXISTENCIASDISPONIBLE=:existenciasDisponibles,
               PVP_OFERTA_MOSTRADOR=:pvpOfertaMostrador,
               PVP=:pvp,
@@ -196,74 +221,74 @@ class ArticleMapper
               WHERE CODFAMILIA=:codFamilia"
     );
     $codFamilia = $obj->getCodFamilia();
-   
+
     $margen = $obj->getMargen();
-    $base=$obj->getBase();
-    $base2=$obj->getBase2();
-    $caractTecnicas=$obj->getCaracTecnicas();
-    $codArtGrannel=$obj->getCodArtGranel();
-    $codArticle=$obj->getCodArticle();
-    $codCategoria=$obj->getCodCat();
-    $codean=$obj->getCodean();
-    $codigo=$obj->getCodigo();
-    $codMarca=$obj->getCodMarca();
-    $codProveedor=$obj->getCodProveedor();
-    $codSubCat=$obj->getCodSubCat();
-    $codSubfamilia=$obj->getCodSubfamilia();
-    $descripcion=$obj->getDescripcion();
-    $esManoObra=$obj->getEsManoObra();
-    $existenciasDisponibles=$obj->getExistenciasDisponibles();
-    $favorito=$obj->getFavorito();
-    $idWoocomerce=$obj->getIdWoocommerce();
-    $imagen=$obj->getImagen();
-    $intrastat=$obj->getInstrastat();
-    $iva=$obj->getIva();
-    $margen=$obj->getMargen();
-    $nordenMostrar=$obj->getNordenMostrar();
-    $peso=$obj->getPeso();
-    $posibleb=$obj->getPosibleb();
-    $pvd=$obj->getPvd();
-    $pvp=$obj->getPvp();
-    $pvp2=$obj->getPvp2();
-    $pvpOfertaMostrador=$obj->getPvpOfertaMostrador();
-    $refMarca=$obj->getReferenciaMarca();
-    $referenciaProveedor=$obj->getReferenciaProveedor();
-    $reqEq=$obj->getReqEq();
-    $udMedida=$obj->getUdMedida();
-    $udsArtGrannel=$obj->getUdsArtGranel();
-    $udsUltimaEntrada=$obj->getUdsUltimaEntrada();
+    $base = $obj->getBase();
+    $base2 = $obj->getBase2();
+    $caractTecnicas = $obj->getCaracTecnicas();
+    $codArtGrannel = $obj->getCodArtGranel();
+    $codArticle = $obj->getCodArticle();
+    $codCategoria = $obj->getCodCat();
+    $codean = $obj->getCodean();
+    $codigo = $obj->getCodigo();
+    $codMarca = $obj->getCodMarca();
+    $codProveedor = $obj->getCodProveedor();
+    $codSubCat = $obj->getCodSubCat();
+    $codSubfamilia = $obj->getCodSubfamilia();
+    $descripcion = $obj->getDescripcion();
+    $esManoObra = $obj->getEsManoObra();
+    $existenciasDisponibles = $obj->getExistenciasDisponibles();
+    $favorito = $obj->getFavorito();
+    $idWoocomerce = $obj->getIdWoocommerce();
+    $imagen = $obj->getImagen();
+    $intrastat = $obj->getInstrastat();
+    $iva = $obj->getIva();
+    $margen = $obj->getMargen();
+    $nordenMostrar = $obj->getNordenMostrar();
+    $peso = $obj->getPeso();
+    $posibleb = $obj->getPosibleb();
+    $pvd = $obj->getPvd();
+    $pvp = $obj->getPvp();
+    $pvp2 = $obj->getPvp2();
+    $pvpOfertaMostrador = $obj->getPvpOfertaMostrador();
+    $refMarca = $obj->getReferenciaMarca();
+    $referenciaProveedor = $obj->getReferenciaProveedor();
+    $reqEq = $obj->getReqEq();
+    $udMedida = $obj->getUdMedida();
+    $udsArtGrannel = $obj->getUdsArtGranel();
+    $udsUltimaEntrada = $obj->getUdsUltimaEntrada();
     $updateStmt->execute([
-    ":codArticulo"=>$codArticle,
-    ":codMarca"=>$codMarca,
-    ":codProveedor"=>$codProveedor,
-    ":codSubfamilia"=>$codSubfamilia,
-    ":codigo"=>$codigo,
-    ":refenreciaMarca"=>$refMarca,
-    ":descripcion"=>$descripcion,
-    ":auxMargen"=>$auxMargen,
-    ":margenbase"=>$margen,
-    ":existenciasDisponibles"=>$existenciasDisponibles,
-    ":pvpOfertaMostrador"=>$pvpOfertaMostrador,
-    ":pvp"=>$pvp,
-    ":pvp2"=>$pvp2,
-    ":esManoObra"=>$esManoObra,
-    ":udsUltEntrada"=>$udsUltimaEntrada,
-    ":base2"=>$base2,
-    ":favorito"=>$favorito,
-    ":posibleb"=>$posibleb,
-    ":codArticuloGranel"=>$codArtGrannel,
-    ":udPorGrannel"=>$udPorGrannel,
-    ":imagen"=>$imagen,
-    ":ivaPercent"=>$iva, 
-    ":intrastat"=>$instrastat,
-    ":uMedida"=>$udMedida,
-    ":peso"=>$peso,
-    ":reqEq"=>$reqEq,
-    ":codCategoria"=>$codCategoria,
-    ":codSubcategoria"=>$codSubCat,
-    ":idWoocomerce"=>$idWoocomerce,
-    ":caracTecnicas"=>$caractTecnicas,
-    ":codFamilia"=>$codFamilia
+      ":codArticulo" => $codArticle,
+      ":codMarca" => $codMarca,
+      ":codProveedor" => $codProveedor,
+      ":codSubfamilia" => $codSubfamilia,
+      ":codigo" => $codigo,
+      ":refenreciaMarca" => $refMarca,
+      ":descripcion" => $descripcion,
+      ":auxMargen" => $auxMargen,
+      ":margenbase" => $margen,
+      ":existenciasDisponibles" => $existenciasDisponibles,
+      ":pvpOfertaMostrador" => $pvpOfertaMostrador,
+      ":pvp" => $pvp,
+      ":pvp2" => $pvp2,
+      ":esManoObra" => $esManoObra,
+      ":udsUltEntrada" => $udsUltimaEntrada,
+      ":base2" => $base2,
+      ":favorito" => $favorito,
+      ":posibleb" => $posibleb,
+      ":codArticuloGranel" => $codArtGrannel,
+      ":udPorGrannel" => $udPorGrannel,
+      ":imagen" => $imagen,
+      ":ivaPercent" => $iva,
+      ":intrastat" => $instrastat,
+      ":uMedida" => $udMedida,
+      ":peso" => $peso,
+      ":reqEq" => $reqEq,
+      ":codCategoria" => $codCategoria,
+      ":codSubcategoria" => $codSubCat,
+      ":idWoocomerce" => $idWoocomerce,
+      ":caracTecnicas" => $caractTecnicas,
+      ":codFamilia" => $codFamilia
     ]);
   }
   public function delete(Article $m)

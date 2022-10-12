@@ -33,9 +33,9 @@ use App\Registry; ?>
         </thead>
         <tbody>
           <?php foreach ($articles as $key => $value) : ?>
-            <tr id="<?= $value['CODARTICULO'] ?>">
+            <tr id="<?= $value['CODARTICULO'] ?> <?= $key%2===0?"bg-light":"" ?>">
 
-              <td class="d-none d-md-table-cell"><?= $key+1 ?></td>
+              <td class="d-none d-md-table-cell"><?= $key + 1 ?></td>
               <td><?= $value['CODARTICULO'] ?></td>
               <td><?= $value['DESCRIPCION']   ?></td>
 
@@ -54,10 +54,10 @@ use App\Registry; ?>
                   <i class="bi bi-pencil-square"></i>
                   <span class="d-none">Editar</span>
                 </a>
-                <a title="Observar" class="btn btn-secondary text-white" <?= $variable ?> href="<?= Registry::get(\App\Registry::ROUTER)->generate(
-                                                                                  "conseguir_article",
-                                                                                  ["id" =>  $value['CODARTICULO']]
-                                                                                ) ?>">
+                <a title="Observar" class="btn btn-secondary text-white" href="<?= Registry::get(\App\Registry::ROUTER)->generate(
+                                                                                                  "conseguir_article",
+                                                                                                  ["id" =>  $value['CODARTICULO']]
+                                                                                                ) ?>">
                   <i class="bi bi-eye"></i>
                   <span class="d-none">Observar</span>
                 </a>

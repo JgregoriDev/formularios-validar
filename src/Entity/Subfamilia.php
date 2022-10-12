@@ -7,7 +7,7 @@ class Subfamilia
   private int $codFamilia;
   private int $codSubfamilia;
   private String $image;
-  private String $nombre;
+  private String $nombre; 
   private String $nombreFamilia;
 
   public function __construct(

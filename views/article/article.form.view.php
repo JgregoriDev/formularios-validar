@@ -24,6 +24,7 @@ $article = $data['article'];
       $proveedors = $data['proveedors'];
 
       ?>
+
       <form method="POST" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <div class="mb-3">
           <label for="codArticulo" class="form-label">C&oacute;digo art&iacute;culo:</label>
@@ -89,7 +90,7 @@ $article = $data['article'];
             <?php if (count($proveedors) > 0) : ?>
 
               <?php foreach ($proveedors as $proveedor) : ?>
-                <option value="<?= $proveedor->getCodProveedor() ?>" id=""><?= $proveedor->getCodProveedor() . " - " . $proveedor->getRazonSocial() ?></option>
+                <option value="<?= $proveedor->getCodProveedor(); ?>" id=""><?= $proveedor->getCodProveedor() . " - " . $proveedor->getRazonSocial() ?></option>
               <?php endforeach; ?>
             <?php else : ?>
             <?php endif; ?>
@@ -102,14 +103,14 @@ $article = $data['article'];
 
         <div class="mb-3">
           <label for="codEan" class="form-label">C&oacute;digo ean:</label>
-          <input type="text" name="codEan" id="" value="codEan" class="form-control">
+          <input type="text" name="codEan" id="" value="<?= $article->getCodean() === 0 ? '' : $article->getCodean() ?>" class="form-control">
           <?php if (FlashMessage::isNotNull("errorcodEan")) : ?>
             <small class="text-danger"><?= FlashMessage::get("errorcodEan") ?></small>
           <?php endif ?>
         </div>
         <div class="mb-3">
           <label for="refProveedor" class="form-label">Referencia proveedor:</label>
-          <input type="text" name="refProveedor" id="" value="refProveedor" class="form-control">
+          <input type="text" name="refProveedor" id="refProveedor" name="refProveedor" value="<?= $article->getReferenciaProveedor() === 0 ? '' : $article->getReferenciaProveedor() ?>" class="form-control">
           <?php if (FlashMessage::isNotNull("errorrefProveedor")) : ?>
             <small class="text-danger"><?= FlashMessage::get("errorrefProveedor") ?></small>
           <?php endif ?>
@@ -284,19 +285,21 @@ $article = $data['article'];
             <small class="text-danger"><?= FlashMessage::get("errorsCodEmpresa") ?></small>
           <?php endif ?>
         </div>
-
+        <div class="mb-3">
+          <?php if (FlashMessage::isNotNull("resultadoSatisfactorio")) : ?>
+            <small class="text-success"><?= FlashMessage::get("resultadoSatisfactorio") ?></small>
+          <?php endif ?>
+          <?php if (FlashMessage::isNotNull("resultadoInsatisfactorio")) : ?>
+            <small class="text-danger"><?= FlashMessage::get("resultadoInsatisfactorio") ?></small>
+          <?php endif ?>
+        </div>
+        <div class="mb-3 text-center">
+          <button type="submit" class="btn btn-success">Enviar</button>
+        </div>
     </div>
-    <div class="mb-3">
-      <?php if (FlashMessage::isNotNull("resultadoSatisfactorio")) : ?>
-        <small class="text-success"><?= FlashMessage::get("resultadoSatisfactorio") ?></small>
-      <?php endif ?>
-      <?php if (FlashMessage::isNotNull("resultadoInsatisfactorio")) : ?>
-        <small class="text-danger"><?= FlashMessage::get("errorsCodEmpresa") ?></small>
-      <?php endif ?>
-    </div>
 
 
-    <button type="submit" class="btn btn-success">Enviar</button>
+
     </form>
   </div>
   <div class="col-2"></div>

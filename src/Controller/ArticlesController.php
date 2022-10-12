@@ -98,7 +98,7 @@ class ArticlesController
       FlashMessage::set("errorcodArticulo", "" . $e->getMessage());
     }
     try {
-      $article->setCodProveedor((int)$this->request->getPOST("codArticulo"));
+      $article->setCodProveedor((int)$this->request->getPOST("codProveedors"));
     } catch (InvalidArgumentException $e) {
       $errors[] = $e->getMessage();
       FlashMessage::set("errorcodArticulo", "" . $e->getMessage());
@@ -130,6 +130,12 @@ class ArticlesController
     }
     try {
       $article->setReferenciaMarca($this->request->getPOST("refMarca"));
+    } catch (InvalidArgumentException $e) {
+      FlashMessage::set("errorrefMarca", "" . $e->getMessage());
+      $errors[] = $e->getMessage();
+    }
+    try {
+      $article->setReferenciaProveedor((int)$this->request->getPOST("refProveedor"));
     } catch (InvalidArgumentException $e) {
       FlashMessage::set("errorrefMarca", "" . $e->getMessage());
       $errors[] = $e->getMessage();
@@ -257,15 +263,17 @@ class ArticlesController
     if ($this->request->isPost()) {
 
       $articleValidat = $this->validateArticle($article);
-
+      // var_dump($articleValidat);
       if (count($errors) === 0) {
         $isInserted = false;
         try {
           $isInserted = $this->articleRepository->save($articleValidat);
+          
         } catch (PdoException $e) {
-          FlashMessage::set("resultadoInsatisfactorio", "Error insertando el art&iacute;culo");
+          FlashMessage::set("resultadoInsatisfactorio", "Error insertando el art&iacute;culo ".$e->getMessage());
         }
-        $isInserted ? FlashMessage::set("resultadoSatisfactorio", "se ha insertado el art&oacute;culo de manera correcta") : "";
+        $isInserted ? FlashMessage::set("resultadoSatisfactorio", "Se ha insertado el art&iacute;culo de manera correcta") :
+          "";
       }
     }
     $response->setView("index");
