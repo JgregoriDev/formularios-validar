@@ -287,6 +287,7 @@ class ArticlesController
   public function borrarArticle(int $id)
   {
     $errors = [];
+    $article='';
     try {
       $article = $this->conseguirArticlePerID($id);
     } catch (EntityNotFoundException $e) {

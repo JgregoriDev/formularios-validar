@@ -198,7 +198,7 @@
       </aside>
       <!-- Aside End -->
       <!-- Main start -->
-      <main class="col col-md-10">
+      <main class="col col-lg-10">
         <?php if (isset($data['titulo'])) : ?>
           <h1><?= $data["titulo"]; ?></h1>
         <?php endif; ?>

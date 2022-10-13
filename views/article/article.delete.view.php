@@ -40,11 +40,11 @@ use App\Registry; ?>
               </a>
               <form action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <input type="hidden" name="familia" value=" <?= $article->getCodArticle(); ?>">
-                <button type="submit" class="btn btn-danger <?= (FlashMessage::isNotNull("resultadoSatisfactorio"))?'btn-secondary':'btn-danger' ?> " <?= (FlashMessage::isNotNull("resultadoSatisfactorio")) 
+                <button type="submit" <?= FlashMessage::isNotNull("resultadoSatisfactorio")?"disabled":"" ?> class="btn <?= (FlashMessage::isNotNull("resultadoSatisfactorio"))?'btn-secondary':'btn-danger' ?> " <?= (FlashMessage::isNotNull("resultadoSatisfactorio")) 
                 ? "disabled" : "" ?>>
                   <i class="bi bi-trash2"></i>
                   <span class="d-none d-lg-inline">
-                    Borrar familia
+                    Borrar art&iacute;culo
                   </span>
 
                 </button>
@@ -54,7 +54,7 @@ use App\Registry; ?>
         </div>
         <div>
           <?php if (FlashMessage::isNotNull("resultadoSatisfactorio")) : ?>
-            <small class="text-sucess">
+            <small class="text-success">
               <?= FlashMessage::get("resultadoSatisfactorio") ?>
             </small>
           <?php endif; ?>

@@ -63,13 +63,19 @@ class ArticleMapper
      DESCRIPCION,CODIGOEAN,REFERENCIAPROVEEDOR,
      REFERENCIAMARCA,AUX_MARGEN,MARGEN,
      BASE, EXISTENCIASDISPONIBLE, PVP_OFERTA_MOSTRADOR, 
-     PVP, PVP2, ESMANOOBRA, UDS_ULTIMAENTRADA
+     PVP, PVP2, ESMANOOBRA, UDS_ULTIMAENTRADA,
+     BASE2,POSIBLEB,CODART_GRANEL,UD_X_UDGRANNEL,
+     IVAPERCENT,NORDEN_MOSTRAR,PESO,
+     CODCATEGORIA,CODSUBCATEGORIA,CARACTECNICAS
      ) VALUES
       (:codArticulo, :codFamilia, :codMarca, 
       :codProveedor, :descripcion,:codEan,:refProveedor,
       :refMarca,:auxMargen,:margen,
       :base,:existenciaDisponibles,:pvpMostrador,
-      :pvp, :pvp2, :esManoObra, :unsdUltEntrada
+      :pvp, :pvp2, :esManoObra, :unsdUltEntrada,
+      :base2,:posibleB,:codArtGrannel,:udsXGrannel,
+      :iva,:nordenMostrar,:peso,
+      :codCategoria,:codSubcategoria,:caracteristicasTecnicas
       )";
 
     $insertStmt = $this->pdo->prepare($sql);
@@ -77,7 +83,6 @@ class ArticleMapper
     $codFamilia = $obj->getCodFamilia() ?? 0;
     $codMarca = $obj->getCodMarca() ?? 0;
     $codProveedor = $obj->getCodProveedor() ?? 0;
-    // var_dump($codProveedor);
     $codigo = $obj->getCodigo() ?? 0;
     $codigoEan = $obj->getCodean() ?? '0';
     $referenciaProveedor = $obj->getReferenciaProveedor() ?? 0;
@@ -99,7 +104,6 @@ class ArticleMapper
     $posibleb = $obj->getPosibleb() ?? 0;
     $codArticuloGranel = $obj->getCodArtGranel() ?? 0;
     $imagen = $obj->getImagen() ?? '';
-    $imagen = $obj->getEsManoObra() ?? 0;
     $ivaPercent = $obj->getIva() ?? 0;
     $nordenMostra = $obj->getNordenMostrar() ?? 0;
     $udPorGrannel = $obj->getUdMedida() ?? 0;
@@ -122,20 +126,30 @@ class ArticleMapper
       ":descripcion" => $descripcion,
       ":codEan" => $codigoEan,
       ":refProveedor" => $referenciaProveedor,
-      ":refMarca"=>$refMarca, 
-      ":auxMargen"=>$auxMargen, 
-      ":margen"=>$margenBase,
-      ":auxMargen"=>$auxMargen,
-      ":margen"=>$margenBase,
-      ":base"=>$base2,
-      ":existenciaDisponibles"=>$existenciasDisponibles,
-      ":pvpMostrador"=>$pvpOfertaMostrador,
-      ":pvp"=>$pvp,
-      ":pvp2"=>$pvp2,
-      ":esManoObra"=>$esManoObra,
-      ":unsdUltEntrada"=>$udsUltEntrada,
+      ":refMarca" => $refMarca,
+      ":auxMargen" => $auxMargen,
+      ":margen" => $margenBase,
+      ":auxMargen" => $auxMargen,
+      ":margen" => $margenBase,
+      ":base" => $base2,
+      ":existenciaDisponibles" => $existenciasDisponibles,
+      ":pvpMostrador" => $pvpOfertaMostrador,
+      ":pvp" => $pvp,
+      ":pvp2" => $pvp2,
+      ":esManoObra" => $esManoObra,
+      ":unsdUltEntrada" => $udsUltEntrada,
+      ":base2"=>$base2, 
+      ":posibleB"=>$posibleb, 
+      ":codArtGrannel"=>$udPorGrannel, 
+      ":udsXGrannel"=>$udPorGrannel,
+      ":iva"=>$ivaPercent, 
+      ":nordenMostrar"=>$nordenMostar, 
+      ":peso"=>$peso,
+      ":codCategoria"=>$codCat,
+      ":codSubcategoria"=>$codSubCat,
+      ":caracteristicasTecnicas"=>$caracTecnicas
     ]);
-    // $insertStmt->execute([
+    // $insertStmt->execute([                  
     //   ":codArticulo" => $codArticulo,
 
     //   ":codMarca" => $codMarca,
@@ -298,5 +312,8 @@ class ArticleMapper
     $codArticle = $m->getCodArticle();
     $statement->bindParam(":codArticulo", $codArticle);
     $statement->execute();
+    if($statement->rowCount()>0)
+      return true;
+    return false;
   }
 }
